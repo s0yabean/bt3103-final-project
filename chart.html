@@ -162,8 +162,8 @@
 		<!-- Reviews by academic year -->
 		<div v-if="charts.review_by_year" class="card">
 			<h3>{{charts.review_by_year.title }}</h3>
-			<column-chart :colors="['#003d7cff']" label="Count" :data="charts.review_by_year.data">
-			</column-chart>
+			<pie-chart label="Count" :data="charts.review_by_year.data">
+			</pie-chart>
 		</div>
 		<!-- Sentiment Score -->
 		<div v-if="charts.sentiment_score" class="card">
