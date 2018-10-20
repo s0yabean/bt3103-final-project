@@ -2,10 +2,16 @@
   box-sizing: border-box;
 }
 
+
+
+/*    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+*/
+
 body {
-  font-family: Arial;
+  font-family: 'Corben', Georgia, Times, serif;
   padding: 10px;
   background: #f1f1f1;
+  
 }
 
 /* Header/Blog Title */
@@ -13,7 +19,7 @@ body {
 .header {
   padding: 30px;
   text-align: center;
-  background: white;
+  background: url(/img/sprinkles/sprinkles.png) repeat 0 0;
 }
 
 .header h1 {
@@ -85,19 +91,20 @@ body {
   border-radius: 25px;
 }
 
+
 .main_content {
-  background-color: orange;
-  padding: 20px;
-  margin-top: 20px;
-  height: 1000px;
-  text-align: center;
-}
+			background: url(/img/halftone-yellow/halftone-yellow.png) repeat 0 0;
+			padding: 20px;
+			margin-top: 20px;
+			height: 1000px;
+			text-align: center;
+		}
 
 .grid-container {
   display: grid;
   grid-template-columns: auto auto;
   grid-gap: 10px;
-  background-color: orange;
+  background: url(/img/halftone-yellow/halftone-yellow.png) repeat 0 0;
   padding: 10px;
   margin-top: 10px;
   /*height: 1000px;
