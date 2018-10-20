@@ -26,6 +26,13 @@
 	</div>
 
 	<div id="app" class="grid-container">
+
+		<!-- Reviews by year -->
+		<div v-if="charts.review_by_year" class="card">
+			<h3>{{charts.review_by_year.title }}</h3>
+			<ve-pie :data="charts.review_by_year">
+			</ve-pie>
+		</div>
 		<!-- Sentiment score -->
 		<div v-if="charts.sentiment" class="card">
 			<h3>{{charts.sentiment.title }}</h3>
@@ -43,6 +50,26 @@
 							},
 						}">
 			</ve-gauge>
+		
+		</div>
+		<!-- Difficulty level -->
+		<div v-if="charts.difficulty_level" class="card">
+			<h3>{{charts.difficulty_level.title }}</h3>
+			<ve-gauge :data="charts.difficulty_level" :settings="{
+													seriesMap: {
+														'score':{ 
+																min:0, 
+																max:10,
+																axisLine: { 
+																	lineStyle: { 
+																		color: [[0.2, '#3E9CD1'],[0.8, '#0576BF'],[1, '#004EA5']], 
+																	} 
+																},
+															},
+													},
+												}">
+			</ve-gauge>
+		</div>
 	</div>
 
 	<script src="https://unpkg.com/vue">
