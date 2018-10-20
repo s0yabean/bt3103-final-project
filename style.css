@@ -85,6 +85,14 @@ body {
   border-radius: 25px;
 }
 
+.main_content {
+  background-color: orange;
+  padding: 20px;
+  margin-top: 20px;
+  height: 1000px;
+  text-align: center;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: auto auto;

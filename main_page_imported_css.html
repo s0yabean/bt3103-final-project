@@ -4,8 +4,13 @@
 <head>
 
 	<script type="text/javascript" src="https://unpkg.com/vue-simple-search-dropdown@latest/dist/vue-simple-search-dropdown.min.js">
-	</script><script src="https://unpkg.com/vue"></script>
-	<style>@import './style.css';</style>
+
+	</script>
+	<script src="https://unpkg.com/vue">
+	</script>
+	<style>
+		@import './style.css';
+	</style>
 
 </head>
 
@@ -32,10 +37,12 @@
 					<h1>Find everything you need to know about NUS Modules!</h1>
 					<p>Search For Your Review: </p>
 					<div id="app" class="centering">
-
+						<Dropdown :options="options" v-on:selected="validateSelection" v-on:filter="getDropdownValues" :disabled="false" placeholder="Please select a module">
+						</Dropdown>
 					</div>
-
-					<p>We can pull the above data from selected.name and selected.id to populate the dashboards.
+					<p>Selected module: {{ selected.name || 'none' }}</p>
+					<p>{{selected.id || 'none'}}</p>
+					<p>We can pull the above data from {{selected.name}} to populate the dashboards.
 					</p>
 				</div>
 			</div>
@@ -54,13 +61,13 @@
       el: '#app',
       data : {
           options: [
-            { name: 'BT3101', id: '1' },
-            { name: 'BT3102', id: '2' },
-            { name: 'BT3103', id: '3' },
-            { name: 'BT4240', id: '4' },
-            { name: 'BT4214', id: '5' },
-            { name: 'BT2101', id: '6' },
-            { name: 'BT1101', id: '7' }              
+            { name: 'BT3101', id: 'Business Analytics Capstone Project' },
+            { name: 'BT3102', id: 'Computational Methods for Business Analytics' },
+            { name: 'BT3103', id: 'Application Systems Development for Business Analytics' },
+            { name: 'BT4240', id: 'Machine Learning for Predictive Data Analytics' },
+            { name: 'BT4211', id: 'Data-Driven Marketing' },
+            { name: 'BT2101', id: 'Decision Making Methods and Tool' },
+            { name: 'BT1101', id: 'Introduction to Business Analytics' }              
           ],
           selected: { name: null, id: null }
         
