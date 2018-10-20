@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Simple html stater project with no dependencies",
   "main": "index.html",
-  "dependencies": {},
+  "dependencies": {
+    "echarts-wordcloud": "1.1.3"
+  },
   "keywords": []
 }
