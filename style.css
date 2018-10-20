@@ -79,9 +79,10 @@ body {
 /* Add a card effect for articles */
 
 .card {
-  background-color: white;
-  padding: 20px;
-  margin-top: 20px;
+  background-color: #e0e0e0b0;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 25px;
 }
 
 .main_content {
