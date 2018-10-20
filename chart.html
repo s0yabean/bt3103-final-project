@@ -2,14 +2,10 @@
 <html>
 
 <head>
-
 	<script type="text/javascript" src="https://unpkg.com/vue-simple-search-dropdown@latest/dist/vue-simple-search-dropdown.min.js">
-
 	</script>
 	<script src="https://unpkg.com/vue">
-
 	</script>
-
 	<style>
 		@import './style.css';
 	</style>
@@ -29,7 +25,6 @@
 		<a href="#" style="float:right">Link</a>
 	</div>
 
-
 	<div id="app" class="grid-container">
 		<!-- Reviews by academic year -->
 		<div v-if="charts.review_by_year" class="card">
@@ -40,8 +35,9 @@
 		<!-- Sentiment Score -->
 		<div v-if="charts.sentiment_score" class="card">
 			<h3>{{charts.sentiment_score.title }}</h3>
-			<bar-chart :colors="['#003d7cff']" :data="charts.sentiment_score.data">
-			</bar-chart>
+			<vue-simple-progress :val=charts.sentiment_score.data.score :text=charts.sentiment_score.data.score.toString() max=10 size="huge"
+			 bar-color="#003d7cff">
+			</vue-simple-progress>
 		</div>
 		<!-- Overall opinion -->
 		<div v-if="charts.overall_opinion" class="card">
@@ -70,7 +66,8 @@
 	<script src="https://unpkg.com/vuefire/dist/vuefire.js">
 
 	</script>
-
+	<script src="https://unpkg.com/vue-simple-progress@1.1.0/dist/vue-simple-progress.js">
+	</script>
 	<script>
 		var db = firebase.initializeApp({ databaseURL: 'https://bt3103-review-for-review.firebaseio.com/' }).database()
   var chartsRef = db.ref('BT3103')
