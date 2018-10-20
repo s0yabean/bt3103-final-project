@@ -73,8 +73,14 @@
 		<!-- Overall opinion -->
 		<div v-if="charts.overall_opinion" class="card">
 			<h3>{{charts.overall_opinion.title }}</h3>
-			<ve-histogram :data="charts.overall_opinion">
+			<ve-histogram :data="charts.overall_opinion" :legend-visible="false">
 			</ve-histogram>
+		</div>
+		<!-- wordcloud -->
+		<div v-if="charts.review_wordcloud" class="card">
+			<h3>{{charts.review_wordcloud.title }}</h3>
+			<ve-wordcloud :data="charts.review_wordcloud">
+			</ve-wordcloud>
 		</div>
 	</div>
 
