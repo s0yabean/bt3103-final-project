@@ -85,12 +85,21 @@ body {
   border-radius: 25px;
 }
 
-.main_content {
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
   background-color: orange;
-  padding: 20px;
-  margin-top: 20px;
-  height: 1000px;
+  padding: 10px;
+  margin-top: 10px;
+  /*height: 1000px;
+  text-align: center;*/
+}
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
 }
 
 /* Clear floats after the columns */

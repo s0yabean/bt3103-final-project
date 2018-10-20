@@ -10,7 +10,9 @@
 
 	</script>
 
-<style>@import './style.css';</style>
+	<style>
+		@import './style.css';
+	</style>
 </head>
 
 <body>
@@ -27,7 +29,8 @@
 		<a href="#" style="float:right">Link</a>
 	</div>
 
-	<div id="app" class="main_content">
+
+	<div id="app" class="grid-container">
 		<!-- Reviews by academic year -->
 		<div v-if="charts.review_by_year" class="card">
 			<h3>{{charts.review_by_year.title }}</h3>
@@ -65,6 +68,7 @@
 
 	</script>
 	<script src="https://unpkg.com/vuefire/dist/vuefire.js">
+
 	</script>
 
 	<script>
@@ -85,7 +89,6 @@
       }
     }
   })
-
 	</script>
 </body>
 
