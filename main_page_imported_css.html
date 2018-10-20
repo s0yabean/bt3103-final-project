@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<script type="text/javascript" src="https://unpkg.com/vue-simple-search-dropdown@latest/dist/vue-simple-search-dropdown.min.js">
+	</script><script src="https://unpkg.com/vue"></script>
+	<style>@import './style.css';</style>
+
+</head>
+
+<body>
+
+	<div class="header">
+		<h1>Review For Review</h1>
+		<p>With Responsive Layout!</p>
+	</div>
+
+	<div class="topnav">
+		<a href="#">Link</a>
+		<a href="#">Link</a>
+		<a href="#">Link</a>
+		<a href="#" style="float:right">Link</a>
+	</div>
+
+	<div class="row">
+		<div class="fullcolumn">
+
+			<div class="main_content">
+
+				<div id="app">
+					<h1>Find everything you need to know about NUS Modules!</h1>
+					<p>Search For Your Review: </p>
+					<div id="app" class="centering">
+
+					</div>
+
+					<p>We can pull the above data from selected.name and selected.id to populate the dashboards.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+
+</html>
+
+
+<script type="text/javascript">
+	Vue.use(Dropdown);
+    new Vue({
+      el: '#app',
+      data : {
+          options: [
+            { name: 'BT3101', id: '1' },
+            { name: 'BT3102', id: '2' },
+            { name: 'BT3103', id: '3' },
+            { name: 'BT4240', id: '4' },
+            { name: 'BT4214', id: '5' },
+            { name: 'BT2101', id: '6' },
+            { name: 'BT1101', id: '7' }              
+          ],
+          selected: { name: null, id: null }
+        
+      },
+
+      methods: {
+        validateSelection(selection) {
+          this.selected = selection;
+          console.log(selection.name+' has been selected');
+        },
+        getDropdownValues(keyword) {
+          console.log('You could refresh options by querying the API with '+keyword);
+        }
+      }
+    });
+
+</script>
