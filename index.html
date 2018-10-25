@@ -1,45 +1,134 @@
+
 <html>
 
 <head>
-	<title>Review for Review - All module-related information.</title>
+	<link href="http://fonts.googleapis.com/css?family=Corben:" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
+
+	<script type="text/javascript" src="https://unpkg.com/vue-simple-search-dropdown@latest/dist/vue-simple-search-dropdown.min.js">
+
+	</script>
+	<script src="https://unpkg.com/vue">
+
+	</script>
+	<style>
+		@import './style.css';
+	</style>
 </head>
 
 <body>
-	<div id="app">
 
-		Features:
-		<br> - Aggregated Data from Official Sources (Tables 12,13 from data lake)
-		<br> - Word Clouds, Summary Statistics, Time Series (Official Data)
-		<br> - Individual Reviews, Sources and Links (Unofficial Data)
-		<br> 
-		<ul>
-			<li><a href="main_page_imported_css.html">Click here For Review MockUp</a></li>
-			<li><a href="chart.html">Click here For Charts MockUp</a></li>
-			<li><a href="Dropdown_Search.html">Page we took search bar from</a></li>
-		</ul>
-
-		<br> 
-		<button>Login</button>
-		<button>Signup</button>
-		<button>Find A Review</button>
-		<button>Write A Review</button>
-		<br>
-		<br> 
+	<div class="header">
+		<h1>ViewNUS</h1>
+		<p>Find everything you need to know about NUS Modules!
+		</p>
 	</div>
 
-<!-- JAVASCRIPT ############################################-->
+	<div class="topnav">
+		<a href="#">About ViewNUS</a>
+		<a href="#">CORS Reviews</a>
+		<a href="#">Informal Reviews</a>
+		<a href="#" style="float:right">Back</a>
+	</div>
 
-	<script src="https://unpkg.com/vue"></script>
+	<div id="app" class="grid-container">
+
+		<!-- Reviews by year -->
+		<div v-if="charts.review_by_year" class="card">
+			<h3>{{charts.review_by_year.title }}</h3>
+			<ve-pie :data="charts.review_by_year">
+			</ve-pie>
+		</div>
+		<!-- Sentiment score -->
+		<div v-if="charts.sentiment" class="card">
+			<h3>{{charts.sentiment.title }}</h3>
+			<ve-gauge :data="charts.sentiment" :settings="{
+							seriesMap: {
+								'score':{ 
+										min:0, 
+										max:10,
+										axisLine: { 
+											lineStyle: { 
+												color: [[0.2, '#3E9CD1'],[0.8, '#0576BF'],[1, '#004EA5']], 
+											} 
+										},
+									},
+							},
+						}">
+			</ve-gauge>
+			<div id="test_button">
+				<button v-on:click="counter">Add 1</button>
+			  <p>The button above has been clicked {{ counter }} times.</p>
+			</div>
+
+		</div>
+		<!-- Difficulty level -->
+		<div v-if="charts.difficulty_level" class="card">
+			<h3>{{charts.difficulty_level.title }}</h3>
+			<ve-gauge :data="charts.difficulty_level" :settings="{
+													seriesMap: {
+														'score':{ 
+																min:0, 
+																max:10,
+																axisLine: { 
+																	lineStyle: { 
+																		color: [[0.2, '#3E9CD1'],[0.8, '#0576BF'],[1, '#004EA5']], 
+																	} 
+																},
+															},
+													},
+												}">
+			</ve-gauge>
+		</div>
+		<!-- Overall opinion -->
+		<div v-if="charts.overall_opinion" class="card">
+			<h3>{{charts.overall_opinion.title }}</h3>
+			<ve-histogram :data="charts.overall_opinion" :legend-visible="false">
+			</ve-histogram>
+		</div>
+		<!-- wordcloud -->
+		<div v-if="charts.review_wordcloud" class="card">
+			<h3>{{charts.review_wordcloud.title }}</h3>
+			<ve-wordcloud :data="charts.review_wordcloud">
+			</ve-wordcloud>
+		</div>
+	</div>
+
+	<script src="https://unpkg.com/vue">
+
+	</script>
+	<script src="https://gstatic.com/firebasejs/4.2.0/firebase.js">
+
+	</script>
+	<script src="https://unpkg.com/vuefire/dist/vuefire.js">
+
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js">
+
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js">
+
+	</script>
+	<script src="https://unpkg.com/echarts-wordcloud@1.1.3/dist/echarts-wordcloud.js">
+
+	</script>
 
 	<script>
-		var app = new Vue({
-      el:"#app",
-      data: {
-       counter: 0, 
-       databaseUrl: 'https://bt3103-review-for-review.firebaseio.com/app_root.json',
-      },
-   )
-
+		var db = firebase.initializeApp({ databaseURL: 'https://bt3103-review-for-review.firebaseio.com/' }).database()
+		  var chartsRef = db.ref('BT3103')
+			new Vue({ 
+		    el: '#app',
+		    firebase: {
+		      charts: {
+		        source: db.ref('BT3103'),
+		      // optionally bind as an object 
+		        asObject: true, 
+		      },
+					data :{
+						counter: 0
+					}
+		    }
+		  })
 	</script>
 </body>
 
