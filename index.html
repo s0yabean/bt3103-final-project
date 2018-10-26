@@ -24,7 +24,7 @@
 		{{films}}
 
 		<div id="test_button">
-			<button v-on:click="created()">Activate</button>
+			<button v-on:click="created2(), submit()">Update Firebase</button>
 					  <p>{{errors}}</p> 
 
 						 
@@ -56,14 +56,21 @@
 							console.log('Data Not Sent!');
 							console.log('Data Sent!');
 						})
-						}, 
+						}
+						 , created2(){ this.$http.get('https://bt3103-final-project.herokuapp.com/hello').then(function(data){
+						this.films = data.body; 
+						this.errors = data.body.prop2;
+						})
+						,error =>{ console.log(error); } }
+						,
 						submit() { 
 							//data =  JSON.stringify({'id' :10})
 							data = JSON.stringify(this.films)
 							this.$http.post('https://bt3103-review-for-review.firebaseio.com/app_root.json', data, {emulateJSON: true})
 						.then(response => { console.log(response); },error =>{ console.log(error);
 						});
-						}}
+						}
+						}
 			
         })
 	</script>
