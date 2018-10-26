@@ -24,15 +24,10 @@
 		{{films}}
 
 		<div id="test_button">
-			<button v-on:click="created2(), submit()">Update Firebase</button>
-					  <p>{{errors}}</p> 
-
-						 
+			<button v-on:click="update_mod('https://bt3103-final-project.herokuapp.com/hello', 
+			'https://bt3103-review-for-review.firebaseio.com/app_root.json')">Update Firebase</button> 
 					</div>
 
-					<button v-on:click="submit()">Submit</button>
-										  <p>{{errors}}</p>
-										</div>
 	</div>
 
 	<script>
@@ -46,32 +41,20 @@
 								databaseUrl: 'https://bt3103-review-for-review.firebaseio.com/app_root.json'
             },
             methods: {
-							created() {
-							this.$http.get('https://bt3103-final-project.herokuapp.com/hello').then(function(data){
-						  console.log(data);
-							console.log(data.url);
-							console.log(data.body);
-						  this.films = data.body;
-							this.errors = data.body.prop2;
-							console.log('Data Not Sent!');
-							console.log('Data Sent!');
-						})
+							 update_mod(get_url, patch_url){
+									this.$http.get(get_url).then(function(data){ 
+									this.films = data.body; 
+									console.log('Received Data: ' + data.body);
+									console.log(this.films);
+									}).then(function(){
+										 data = JSON.stringify(this.films);
+										 console.log('Sending Data: ' + data);
+										 this.$http.post(patch_url, data);
+										 console.log('Data Sent!');
+									}) ,
+									error =>{ console.log(error);}
+							 }	
 						}
-						 , created2(){ this.$http.get('https://bt3103-final-project.herokuapp.com/hello').then(function(data){
-						this.films = data.body; 
-						this.errors = data.body.prop2;
-						})
-						,error =>{ console.log(error); } }
-						,
-						submit() { 
-							//data =  JSON.stringify({'id' :10})
-							data = JSON.stringify(this.films)
-							this.$http.post('https://bt3103-review-for-review.firebaseio.com/app_root.json', data, {emulateJSON: true})
-						.then(response => { console.log(response); },error =>{ console.log(error);
-						});
-						}
-						}
-			
         })
 	</script>
 </body>
