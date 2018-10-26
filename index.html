@@ -1,74 +1,60 @@
+<!DOCTYPE html>
 
-from flask import Flask, request, jsonify
-import simplejson as json
-import requests
-#import json
-import sys
+<html>
 
-# Settings
-app = Flask(__name__)
-from models import db, create_engine
-# Above line needs to be after app is created as models.py needs app. 
-# Somewhat a circular dependency but done to make files more compact
+<head>
+	<meta charset="" utf-8>
+	<meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+	<title>Web Project 2018</title>
+	<script src="https://unpkg.com/vue/dist/vue.js">
+	</script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js">
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4">
+	</script>
 
-from flask import Response
+	</script>
+</head>
 
-@app.route("/hello")
-def route1():
-    dict1 = {"prop1": "p1", "prop2": "p2"}
-    return Response(json.dumps(dict1), mimetype='application/json')
+<body>
+	<div id="app">
+		<h2>Liste of films</h2>
+		{{films}}
 
-# Routes 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+		<div id="test_button">
+			<button v-on:click="update_mod('https://bt3103-final-project.herokuapp.com/test4', 
+			'https://bt3103-review-for-review.firebaseio.com/app_root/count.json')">Update Firebase</button> 
+					</div>
 
-@app.route('/<user_id>')
-def hello_module(user_id):
-    return 'Hello ' +  user_id
+	</div>
 
-@app.route('/test')
-def test():
-    resultproxy = db.session.execute("select round(avg(m2), 2), count(*) from official_reviews;").fetchall()
-    d, a = {}, {}
-    for rowproxy in resultproxy:
-        for tup in rowproxy.items():
-            d = {**d, **{tup[0]: tup[1]}}
-        a.update(d)
-    return Response(json.dumps(a), mimetype='application/json')
+	<script>
+		//const myObjStr = JSON.parse(JSON.stringify(5))
+		new Vue({
+            el: '#app',
+            data : {
+                films: [],
+                errors: [],
+							  test: [],
+								databaseUrl: 'https://bt3103-review-for-review.firebaseio.com/app_root.json'
+            },
+            methods: {
+							 update_mod(get_url, patch_url){
+									this.$http.get(get_url).then(function(data){ 
+									this.films = data.body; 
+									console.log('Received Data: ' + data.body);
+									console.log(this.films);
+									}).then(function(){
+										 data = JSON.stringify(this.films);
+										 console.log('Sending Data: ' + data);
+										 this.$http.patch(patch_url, data);
+										 console.log('Data Sent!');
+									}) ,
+									error =>{ console.log(error);}
+							 }	
+						}
+        })
+	</script>
+</body>
 
-@app.route('/test2')
-def test2():
-    resultproxy = db.session.execute("select round(avg(m2), 2) as value from official_reviews;").fetchall()
-    d, a = {}, {}
-    for rowproxy in resultproxy:
-        for tup in rowproxy.items():
-            d = {**d, **{tup[0]: tup[1]}}
-        a.update(d)
-    return Response(json.dumps(a), mimetype='application/json')    
-
-@app.route('/<mod_id>/<chart>')
-def avgm1(mod_id, chart):
-    if chart == 'avgm1':
-        code = "'" + mod_id + "'"
-        query = "select round(avg(m2), 2) as value from official_reviews where mod_class_id = " + code
-        resultproxy = db.session.execute(query).fetchall()
-        d, a = {}, {}
-        for rowproxy in resultproxy:
-            for tup in rowproxy.items():
-                d = {**d, **{tup[0]: tup[1]}}
-            a.update(d)
-    return Response(json.dumps(a), mimetype='application/json')
-
-if __name__ == '__main__':
-    app.run()
-
-
-#Resultproxy docs:
-#class sqlalchemy.engine.RowProxy(parent, row, processors, keymap)
-#Proxy values from a single cursor row.
-#Mostly follows “ordered dictionary” behavior, mapping result values to the string-based column name, the integer position of the result in the row, as well as Column instances which can be mapped to the original Columns that produced this result set (for results that correspond to constructed SQL expressions).
-#has_key(key) Return True if this RowProxy contains the given key.
-#items() Return a list of tuples, each tuple containing a key/value pair.
-#keys() Return the list of keys as strings represented by this RowProxy.
-#https://stackoverflow.com/questions/20743806/sqlalchemy-execute-return-resultproxy-as-tuple-not-dict
+</html>
