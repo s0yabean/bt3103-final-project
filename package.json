@@ -3,8 +3,6 @@
   "version": "1.0.0",
   "description": "Simple html stater project with no dependencies",
   "main": "index.html",
-  "dependencies": {
-    "https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js": "latest"
-  },
+  "dependencies": {},
   "keywords": []
 }

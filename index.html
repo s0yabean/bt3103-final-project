@@ -22,26 +22,49 @@
 	<div id="app">
 		<h2>Liste of films</h2>
 		{{films}}
+
+		<div id="test_button">
+			<button v-on:click="created()">Activate</button>
+					  <p>{{errors}}</p> 
+
+						 
+					</div>
+
+					<button v-on:click="submit()">Submit</button>
+										  <p>{{errors}}</p>
+										</div>
 	</div>
 
 	<script>
+		//const myObjStr = JSON.parse(JSON.stringify(5))
 		new Vue({
             el: '#app',
             data : {
                 films: [],
-                errors: []
+                errors: [],
+							  test: [],
+								databaseUrl: 'https://bt3103-review-for-review.firebaseio.com/app_root.json'
             },
-            created() {
+            methods: {
+							created() {
 							this.$http.get('https://bt3103-final-project.herokuapp.com/hello').then(function(data){
 						  console.log(data);
 							console.log(data.url);
 							console.log(data.body);
-						  this.films = data.body
+						  this.films = data.body;
+							this.errors = data.body.prop2;
+							console.log('Data Not Sent!');
+							console.log('Data Sent!');
 						})
-						}
-						
-						
-
+						}, 
+						submit() { 
+							//data =  JSON.stringify({'id' :10})
+							data = JSON.stringify(this.films)
+							this.$http.post('https://bt3103-review-for-review.firebaseio.com/app_root.json', data, {emulateJSON: true})
+						.then(response => { console.log(response); },error =>{ console.log(error);
+						});
+						}}
+			
         })
 	</script>
 </body>
