@@ -54,10 +54,10 @@ def avgm1(mod_id, chart):
         query = "select round(avg(m2), 2) as value from official_reviews where mod_class_id = " + code
         resultproxy = db.session.execute(query).fetchall()
         d, a = {}, {}
-    for rowproxy in resultproxy:
-        for tup in rowproxy.items():
-            d = {**d, **{tup[0]: tup[1]}}
-        a.update(d)
+        for rowproxy in resultproxy:
+            for tup in rowproxy.items():
+                d = {**d, **{tup[0]: tup[1]}}
+            a.update(d)
     return Response(json.dumps(a), mimetype='application/json')
 
 if __name__ == '__main__':
