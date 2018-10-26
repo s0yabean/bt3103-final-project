@@ -2,16 +2,13 @@
   box-sizing: border-box;
 }
 
-
-
 /*    font-family: 'Nobile', Helvetica, Arial, sans-serif;
 */
 
 body {
-  font-family: 'Corben', Georgia, Times, serif;
+  font-family: "Corben", Georgia, Times, serif;
   padding: 10px;
   background: #f1f1f1;
-  
 }
 
 /* Header/Blog Title */
@@ -84,37 +81,58 @@ body {
 
 /* Add a card effect for articles */
 
+.main_content {
+  background: url(/img/halftone-yellow/halftone-yellow.png) repeat 0 0;
+  padding: 20px;
+  margin-top: 20px;
+  height: 1000px;
+  text-align: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-gap: 10px;
+  background: url(/img/halftone-yellow/halftone-yellow.png) repeat 0 0;
+  padding: 10px;
+  margin-top: 10px;
+  /*  height: 1000px;*/
+  text-align: center;
+}
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 0 0;
+  font-size: 20px;
+}
+.score {
+  background-color: #e0e0e0b0;
+  padding: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 25px;
+  grid-column: 1 / span 1;
+}
 .card {
   background-color: #e0e0e0b0;
   padding: 10px;
   margin-top: 10px;
   border-radius: 25px;
+  grid-column: 2 / span 4;
 }
-
-
-.main_content {
-			background: url(/img/halftone-yellow/halftone-yellow.png) repeat 0 0;
-			padding: 20px;
-			margin-top: 20px;
-			height: 1000px;
-			text-align: center;
-		}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 10px;
-  background: url(/img/halftone-yellow/halftone-yellow.png) repeat 0 0;
+.card1 {
+  background-color: #e0e0e0b0;
   padding: 10px;
   margin-top: 10px;
-  /*height: 1000px;
-  text-align: center;*/
+  border-radius: 25px;
+  grid-column: 1 / span 2;
 }
-.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding: 20px 0;
-  font-size: 30px;
+.card2 {
+  background-color: #e0e0e0b0;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 25px;
+  grid-column: 3 / span 3;
 }
 
 /* Clear floats after the columns */

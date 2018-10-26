@@ -31,62 +31,90 @@
 		<a href="#" style="float:right">Back</a>
 	</div>
 
-	<div id="app" class="grid-container">
-
-		<!-- Reviews by year -->
-		<div v-if="charts.review_by_year" class="card">
-			<h3>{{charts.review_by_year.title }}</h3>
-			<ve-pie :data="charts.review_by_year">
-			</ve-pie>
+	<div id="app" class="main_content">
+		<h1>Module Overview</h1>
+		<div class="grid-container">
+			<div class="score">
+				<h3>{{charts.module_info.code}}</h3>
+				<h3>{{charts.module_info.title}}</h3>
+			</div>
+			<div class="card">
+				<p>{{charts.module_info.description}}</p>
+			</div>
 		</div>
-		<!-- Sentiment score -->
-		<div v-if="charts.sentiment" class="card">
-			<h3>{{charts.sentiment.title }}</h3>
-			<ve-gauge :data="charts.sentiment" :settings="{
-							seriesMap: {
-								'score':{ 
-										min:0, 
-										max:10,
-										axisLine: { 
-											lineStyle: { 
-												color: [[0.2, '#3E9CD1'],[0.8, '#0576BF'],[1, '#004EA5']], 
-											} 
-										},
-									},
-							},
-						}">
-			</ve-gauge>
-
+		<h1>Overall Sentiment</h1>
+		<div class="grid-container">
+			<!-- Sentiment score -->
+			<div v-if="charts.sentiment" class="score">
+				<ve-gauge :data="charts.sentiment" :settings="{
+                                seriesMap: {
+                                    'score':{ 
+                                            min:0, 
+                                            max:10,
+                                            axisLine: { 
+                                                lineStyle: { 
+                                                    color: [[0.2, '#3E9CD1'],[0.8, '#0576BF'],[1, '#004EA5']], 
+                                                } 
+                                            },
+                                        },
+                                },
+                            }">
+				</ve-gauge>
+				<p>0: Bad -- 10: Execellent</p>
+			</div>
+			<!-- Overall opinion -->
+			<div v-if="charts.overall_opinion" class="card">
+				<p>Overall Opinion</p>
+				<ve-histogram :data="charts.overall_opinion" :legend-visible="false" :settings="{
+                                        itemStyle: {
+                                            'color':'#004EA5'
+                                        },
+                                    }">
+				</ve-histogram>
+			</div>
+			<!-- Good text wordcloud -->
+			<div v-if="charts.review_good_text" class="card1">
+				<p>What do students like?</p>
+				<ve-wordcloud :data="charts.review_good_text">
+				</ve-wordcloud>
+			</div>
+			<!-- Bad text wordcloud -->
+			<div v-if="charts.review_bad_text" class="card2">
+				<p>What do students dislike?</p>
+				<ve-wordcloud :data="charts.review_bad_text">
+				</ve-wordcloud>
+			</div>
 		</div>
-		<!-- Difficulty level -->
-		<div v-if="charts.difficulty_level" class="card">
-			<h3>{{charts.difficulty_level.title }}</h3>
-			<ve-gauge :data="charts.difficulty_level" :settings="{
-													seriesMap: {
-														'score':{ 
-																min:0, 
-																max:10,
-																axisLine: { 
-																	lineStyle: { 
-																		color: [[0.2, '#3E9CD1'],[0.8, '#0576BF'],[1, '#004EA5']], 
-																	} 
-																},
-															},
-													},
-												}">
-			</ve-gauge>
-		</div>
-		<!-- Overall opinion -->
-		<div v-if="charts.overall_opinion" class="card">
-			<h3>{{charts.overall_opinion.title }}</h3>
-			<ve-histogram :data="charts.overall_opinion" :legend-visible="false">
-			</ve-histogram>
-		</div>
-		<!-- wordcloud -->
-		<div v-if="charts.review_wordcloud" class="card">
-			<h3>{{charts.review_wordcloud.title }}</h3>
-			<ve-wordcloud :data="charts.review_wordcloud">
-			</ve-wordcloud>
+		<h1>Difficulty Level</h1>
+		<div class="grid-container">
+			<!-- Difficulty level -->
+			<div v-if="charts.difficulty_level" class="score">
+				<ve-gauge :data="charts.difficulty_level" :settings="{
+                                        seriesMap: {
+                                            'score':{ 
+                                                    min:0, 
+                                                    max:10,
+                                                    axisLine: { 
+                                                        lineStyle: { 
+                                                            color: [[0.2, '#3E9CD1'],[0.8, '#0576BF'],[1, '#004EA5']], 
+                                                        } 
+                                                    },
+                                                },
+                                        },
+                                    }">
+				</ve-gauge>
+				<p>0: Easy -- 10: Very Difficult</p>
+			</div>
+			<!-- Expected Grade -->
+			<div v-if="charts.expected_grade" class="card">
+				<p>Expected Grade</p>
+				<ve-histogram :data="charts.expected_grade" :legend-visible="false" :settings="{
+                                        itemStyle: {
+                                            'color':'#004EA5'
+                                        },
+                                    }">
+				</ve-histogram>
+			</div>
 		</div>
 	</div>
 
