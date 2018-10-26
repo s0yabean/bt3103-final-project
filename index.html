@@ -24,7 +24,7 @@
 		{{films}}
 
 		<div id="test_button">
-			<button v-on:click="update_mod('https://bt3103-final-project.herokuapp.com/hello', 
+			<button v-on:click="update_mod('https://bt3103-final-project.herokuapp.com/test4', 
 			'https://bt3103-review-for-review.firebaseio.com/app_root.json')">Update Firebase</button> 
 					</div>
 
@@ -49,7 +49,7 @@
 									}).then(function(){
 										 data = JSON.stringify(this.films);
 										 console.log('Sending Data: ' + data);
-										 this.$http.post(patch_url, data);
+										 this.$http.patch(patch_url, data);
 										 console.log('Data Sent!');
 									}) ,
 									error =>{ console.log(error);}
