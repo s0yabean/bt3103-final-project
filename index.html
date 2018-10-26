@@ -49,10 +49,7 @@
 									}).then(function(){
 										 data = JSON.stringify(this.films);
 										 console.log('Sending Data: ' + data);
-										 this.$http.patch(patch_url, data,{
-											 headers: {'Content-Type': 'application/json; charset=UTF-8', 'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,PATCH,OPTIONS',
-										'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Z-Key'
-										}});
+										 this.$http.patch(patch_url, data);
 										 console.log('Data Sent!');
 									}) ,
 									error =>{ console.log(error);}
