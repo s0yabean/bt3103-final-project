@@ -25,7 +25,7 @@
 
 		<div id="test_button">
 			<button v-on:click="update_mod('https://bt3103-final-project.herokuapp.com/test4', 
-			'https://bt3103-review-for-review.firebaseio.com/app_root.json')">Update Firebase</button> 
+			'https://bt3103-review-for-review.firebaseio.com/app_root/count.json')">Update Firebase</button> 
 					</div>
 
 	</div>
@@ -49,7 +49,10 @@
 									}).then(function(){
 										 data = JSON.stringify(this.films);
 										 console.log('Sending Data: ' + data);
-										 this.$http.patch(patch_url, data);
+										 this.$http.patch(patch_url, data,{
+											 headers: {'Content-Type': 'application/json; charset=UTF-8', 'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+										'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Z-Key'
+										}});
 										 console.log('Data Sent!');
 									}) ,
 									error =>{ console.log(error);}
