@@ -6,10 +6,8 @@
 	<link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
 
 	<script type="text/javascript" src="https://unpkg.com/vue-simple-search-dropdown@latest/dist/vue-simple-search-dropdown.min.js">
-
 	</script>
 	<script src="https://unpkg.com/vue">
-
 	</script>
 	<style>
 		@import './style.css';
@@ -32,21 +30,19 @@
 	</div>
 
 	<div id="app" class="main_content">
-		<h1>Module Overview</h1>
-		<div class="grid-container">
-			<div class="score">
-				<h3>{{charts.module_info.code}}</h3>
-				<h3>{{charts.module_info.title}}</h3>
-			</div>
-			<div class="card">
-				<p>{{charts.module_info.description}}</p>
-			</div>
-		</div>
-		<h1>Overall Sentiment</h1>
-		<div class="grid-container">
-			<!-- Sentiment score -->
-			<div v-if="charts.sentiment" class="score">
-				<ve-gauge :data="charts.sentiment" :settings="{
+        <h1>Module Overview</h1>
+        <div class="grid-container">
+          <div class="module_overview">
+              <h3>{{charts.module_info.code}} - {{charts.module_info.title}}</h3>
+              <h4>Lecturer: {{charts.module_info.professor}}</h4>
+              <p>{{charts.module_info.description}}</p>
+          </div>  
+        </div>
+        <h1>Overall Sentiment</h1>
+        <div class="grid-container">
+            <!-- Sentiment score -->
+            <div v-if="charts.sentiment" class="score">
+                <ve-gauge :data="charts.sentiment" :settings="{
                                 seriesMap: {
                                     'score':{ 
                                             min:0, 
@@ -59,37 +55,41 @@
                                         },
                                 },
                             }">
-				</ve-gauge>
-				<p>0: Bad -- 10: Execellent</p>
-			</div>
-			<!-- Overall opinion -->
-			<div v-if="charts.overall_opinion" class="card">
-				<p>Overall Opinion</p>
-				<ve-histogram :data="charts.overall_opinion" :legend-visible="false" :settings="{
+                </ve-gauge>
+                <p>0: Bad -- 10: Execellent</p>
+            </div>
+            <!-- Overall opinion -->
+            <div v-if="charts.overall_opinion" class="card">
+                <p>Overall Opinion</p>
+                <ve-histogram :data="charts.overall_opinion" 
+                              :legend-visible="false"
+                              :settings="{
                                         itemStyle: {
                                             'color':'#004EA5'
                                         },
-                                    }">
-				</ve-histogram>
-			</div>
-			<!-- Good text wordcloud -->
-			<div v-if="charts.review_good_text" class="card1">
-				<p>What do students like?</p>
-				<ve-wordcloud :data="charts.review_good_text">
-				</ve-wordcloud>
-			</div>
-			<!-- Bad text wordcloud -->
-			<div v-if="charts.review_bad_text" class="card2">
-				<p>What do students dislike?</p>
-				<ve-wordcloud :data="charts.review_bad_text">
-				</ve-wordcloud>
-			</div>
-		</div>
-		<h1>Difficulty Level</h1>
-		<div class="grid-container">
-			<!-- Difficulty level -->
-			<div v-if="charts.difficulty_level" class="score">
-				<ve-gauge :data="charts.difficulty_level" :settings="{
+                                    }"
+                              >
+                </ve-histogram>
+            </div>
+            <!-- Good text wordcloud -->
+            <div v-if="charts.review_good_text" class="card1">
+                <p>What do students like?</p>
+                <ve-wordcloud :data="charts.review_good_text">
+                </ve-wordcloud>
+            </div>
+            <!-- Bad text wordcloud -->
+            <div v-if="charts.review_bad_text" class="card2">
+                <p>What do students dislike?</p>
+                <ve-wordcloud :data="charts.review_bad_text">
+                </ve-wordcloud>
+            </div>
+        </div>
+        <h1>Difficulty Level</h1>
+        <div class="grid-container">
+            <!-- Difficulty level -->
+            <div v-if="charts.difficulty_level" class="score">
+                <ve-gauge :data="charts.difficulty_level" 
+                          :settings="{
                                         seriesMap: {
                                             'score':{ 
                                                     min:0, 
@@ -102,39 +102,34 @@
                                                 },
                                         },
                                     }">
-				</ve-gauge>
-				<p>0: Easy -- 10: Very Difficult</p>
-			</div>
-			<!-- Expected Grade -->
-			<div v-if="charts.expected_grade" class="card">
-				<p>Expected Grade</p>
-				<ve-histogram :data="charts.expected_grade" :legend-visible="false" :settings="{
+                </ve-gauge>
+                <p>0: Easy -- 10: Very Difficult</p>
+            </div>
+            <!-- Expected Grade -->
+            <div v-if="charts.expected_grade" class="card">
+                <p>Expected Grade vs Actual Grade</p>
+                <ve-histogram :data="charts.expected_grade" 
+                              :settings="{
                                         itemStyle: {
                                             'color':'#004EA5'
                                         },
                                     }">
-				</ve-histogram>
-			</div>
-		</div>
+                </ve-histogram>
+            </div>
+        </div>
 	</div>
 
 	<script src="https://unpkg.com/vue">
-
 	</script>
 	<script src="https://gstatic.com/firebasejs/4.2.0/firebase.js">
-
 	</script>
 	<script src="https://unpkg.com/vuefire/dist/vuefire.js">
-
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js">
-
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js">
-
 	</script>
 	<script src="https://unpkg.com/echarts-wordcloud@1.1.3/dist/echarts-wordcloud.js">
-
 	</script>
 
 	<script>
