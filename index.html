@@ -7,11 +7,8 @@
 	<meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
 	<title>Web Project 2018</title>
 	<script src="https://unpkg.com/vue/dist/vue.js">
-
 	</script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js">
 
-	</script>
 	<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4">
 
 	</script>
@@ -22,12 +19,23 @@
 <body>
 	<div id="app">
 		<h2>Liste of films</h2>
-		{{films}}
+		{{diff_spd_value}}
 
-		<div id="test_button">
-			<button v-on:click="update_mod('https://bt3103-final-project.herokuapp.com/EC1301/avgm1', 
-			'https://bt3103-review-for-review.firebaseio.com/BT3103/difficulty_level/rows/0.json')">Updated Firebase</button> 
+		<div id="diff_spd">
+			<button v-on:click="update_diff_spd('https://bt3103-final-project.herokuapp.com/EC1301/diff_spd', 
+			'https://bt3103-review-for-review.firebaseio.com/BT3103/difficulty_level/rows/0.json')">Update Difficulty Level Chart (Speedometer)</button> 
 					</div>
+
+{{snt_spd_value}}
+		<div id="snt_spd">
+			<button v-on:click="update_snt_spd('https://bt3103-final-project.herokuapp.com/EC1301/snt_spd', 
+					'https://bt3103-review-for-review.firebaseio.com/BT3103/sentiment/rows/0.json')">Update Overall Sentiment Chart (Speedometer)</button> 
+							</div>
+{{snt_bar}}
+		<div id="snt_bar">
+			<button v-on:click="update_snt_bar_all('https://bt3103-final-project.herokuapp.com/ACC2002/overall_', 
+							'https://bt3103-review-for-review.firebaseio.com/BT3103/overall_opinion/rows/')">Update Overall Sentiment Opinion Chart</button> 
+									</div>
 
 	</div>
 
@@ -36,26 +44,53 @@
 		new Vue({
             el: '#app',
             data : {
-                films: [],
-                errors: [],
-							  test: [],
+                diff_spd_value: [],
+                snt_spd_value: [],
+							  snt_bar: ['1', '2', '3', '4', '5'], //to hold the 5 sentiment bar numbers
 								databaseUrl: 'https://bt3103-review-for-review.firebaseio.com/app_root.json'
             },
             methods: {
-							 update_mod(get_url, patch_url){
+							 update_diff_spd(get_url, patch_url){
 									this.$http.get(get_url).then(function(data){ 
-									this.films = data.body; 
+									this.diff_spd_value = data.body; 
 									console.log('Received Data: ' + data.body);
-									console.log(this.films);
 									}).then(function(){
-										 data = JSON.stringify(this.films);
+										 data = JSON.stringify(this.diff_spd_value);
 										 console.log('Sending Data: ' + data);
 										 this.$http.patch(patch_url, data);
-										 console.log('Data Sent!');
 									}) ,
 									error =>{ console.log(error);}
-							 }	
-						}
+							 },
+							 update_snt_spd(get_url, patch_url){
+								  this.$http.get(get_url).then(function(data){ 
+									this.snt_spd_value = data.body; 
+									console.log('ReceivedData: ' + data.body); 
+									 }).then(function(){ 
+										 data = JSON.stringify(this.snt_spd_value);
+										console.log('Sending Data: ' + data); 
+										this.$http.patch(patch_url, data); 
+										}) , 
+										error =>{ console.log(error);} }
+										,
+								 update_snt_bar_all(get_url, patch_url){ //create function with array the update the index, so snt_bar = [2,3,2,5,6]
+									 for (var i = 0; i <= 4; i++){
+										 	new_get_url = get_url + (i + 1) ;
+											new_patch_url = patch_url + i + '.json';
+											this.update_snt_bar(new_get_url, new_patch_url, i);
+									 }
+								 },
+								 update_snt_bar(get_url, patch_url, index){ 
+									 this.$http.get(get_url).then(function(data){ 
+										 this.snt_bar[index] = data.body; 
+										 console.log('ReceivedData:' + data.body); 
+										 }).then(function(){ 
+											 data = JSON.stringify(this.snt_bar[index]); 
+											 console.log('SendingData: ' + data); 
+											 this.$http.patch(patch_url, data); 
+											 }) 
+											 , error =>{ console.log(error);} 
+											 }
+								 }
         })
 	</script>
 </body>
