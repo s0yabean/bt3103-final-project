@@ -202,6 +202,7 @@
         validateSelection(selection) {
           this.selected = selection;
           console.log(selection.name+' has been selected');
+					 window.location.href = 'chart';
         },
         getDropdownValues(keyword) {
           console.log('You could refresh options by querying the API with '+keyword);
