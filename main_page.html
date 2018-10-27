@@ -162,7 +162,7 @@
 					<h1>Find everything you need to know about NUS Modules!</h1>
 					<p>Search For Your Review: </p>
 					<div id="app" class="centering">
-						<Dropdown @click="visit" :options="options" v-on:selected="validateSelection" v-on:filter="getDropdownValues" :disabled="false" placeholder="Please select a module">
+						<Dropdown :options="options" v-on:selected="validateSelection" v-on:filter="getDropdownValues" :disabled="false" placeholder="Please select a module">
 						</Dropdown>
 					</div>
 					<p>Selected module: {{ selected.name || 'none' }}</p>
@@ -197,7 +197,6 @@
           selected: { name: null, id: null }
         
       },
-
       methods: {
         validateSelection(selection) {
           this.selected = selection;
