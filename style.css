@@ -2,14 +2,17 @@
   box-sizing: border-box;
 }
 
+
+
 /*    font-family: 'Nobile', Helvetica, Arial, sans-serif;
 */
 
 body {
-  font-family: "Corben", Georgia, Times, serif;
+  font-family: 'Corben', Georgia, Times, serif;
   padding: 10px;
   background: #f1f1f1;
 }
+
 
 /* Header/Blog Title */
 
@@ -82,12 +85,11 @@ body {
 /* Add a card effect for articles */
 
 .main_content {
-  background: url(/img/halftone-yellow/halftone-yellow.png) repeat 0 0;
-  padding: 20px;
-  margin-top: 20px;
-  height: 1000px;
-  text-align: center;
-}
+			background-color: #F5A540;
+			padding: 20px;
+			margin-top: 20px;
+			text-align: center;
+		}
 
 .grid-container {
   display: grid;
@@ -96,7 +98,6 @@ body {
   background: url(/img/halftone-yellow/halftone-yellow.png) repeat 0 0;
   padding: 10px;
   margin-top: 10px;
-  /*  height: 1000px;*/
   text-align: center;
 }
 .grid-container > div {
@@ -104,6 +105,25 @@ body {
   text-align: center;
   padding: 0 0;
   font-size: 20px;
+}
+.module_overview {
+  background-color: #e0e0e0b0;
+  border-radius: 25px;
+  grid-column: 1 / span 5;
+}
+.module_overview h3 {
+  text-align: center;
+  margin-left: 10px;
+}
+.module_overview h4 {
+  text-align: center;
+  font-size: 18px;
+  margin-left: 5px;
+}
+.module_overview p {
+  text-align: left;
+  font-size: 16px;
+  margin: 20px;
 }
 .score {
   background-color: #e0e0e0b0;
