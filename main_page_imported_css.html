@@ -45,7 +45,7 @@
 					<div id="app" class="centering">
 						<Dropdown :options="options" v-on:selected="validateSelection" 
 						v-on:filter="getDropdownValues" :disabled="false" 
-						placeholder="Please select a module" @click="visit(url)">
+						placeholder="Please select a module" @click="visit()">
 						</Dropdown>
 					</div>
 					<p>Selected module: {{ selected.name || 'none' }}</p>
@@ -90,7 +90,9 @@
         getDropdownValues(keyword) {
           console.log('You could refresh options by querying the API with '+keyword);
         },
-				visit(person) { window.location.href = 'www.google.com'; }
+				visit() { 
+				 console.log('visit has been triggered');
+					window.location.href = 'www.google.com'; }
       }
     });
 
