@@ -43,7 +43,9 @@
 					<h1>Find everything you need to know about NUS Modules!</h1>
 					<p>Search For Your Review: </p>
 					<div id="app" class="centering">
-						<Dropdown :options="options" v-on:selected="validateSelection" v-on:filter="getDropdownValues" :disabled="false" placeholder="Please select a module">
+						<Dropdown :options="options" v-on:selected="validateSelection" 
+						v-on:filter="getDropdownValues" :disabled="false" 
+						placeholder="Please select a module" @click="visit(url)">
 						</Dropdown>
 					</div>
 					<p>Selected module: {{ selected.name || 'none' }}</p>
@@ -75,7 +77,8 @@
             { name: 'BT2101', id: 'Decision Making Methods and Tool' },
             { name: 'BT1101', id: 'Introduction to Business Analytics' }              
           ],
-          selected: { name: null, id: null }
+          selected: { name: null, id: null },
+				 
         
       },
 
@@ -86,7 +89,8 @@
         },
         getDropdownValues(keyword) {
           console.log('You could refresh options by querying the API with '+keyword);
-        }
+        },
+				visit(person) { window.location.href = 'www.google.com'; }
       }
     });
 
