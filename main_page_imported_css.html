@@ -44,7 +44,7 @@
 					<p>Search For Your Review: </p>
 					<div id="app" class="centering">
 						<Dropdown :options="options" v-on:selected="validateSelection" 
-						v-on:filter="getDropdownValues" :disabled="false" @click="visit"
+						v-on:filter="getDropdownValues" :disabled="false"
 						placeholder="Please select a module">
 						</Dropdown>
 					</div>
@@ -86,7 +86,7 @@
         validateSelection(selection) {
           this.selected = selection;
           console.log(selection.name+' has been selected');
-					 //window.location.href = 'www.google.com';
+					 window.location.href = 'www.google.com';
         },
         getDropdownValues(keyword) {
           console.log('You could refresh options by querying the API with '+keyword);
