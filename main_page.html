@@ -162,7 +162,7 @@
 					<h1>Find everything you need to know about NUS Modules!</h1>
 					<p>Search For Your Review: </p>
 					<div id="app" class="centering">
-						<Dropdown :options="options" v-on:selected="validateSelection" v-on:filter="getDropdownValues" :disabled="false" placeholder="Please select a module">
+						<Dropdown @click="visit" :options="options" v-on:selected="validateSelection" v-on:filter="getDropdownValues" :disabled="false" placeholder="Please select a module">
 						</Dropdown>
 					</div>
 					<p>Selected module: {{ selected.name || 'none' }}</p>
@@ -202,11 +202,14 @@
         validateSelection(selection) {
           this.selected = selection;
           console.log(selection.name+' has been selected');
-					 window.location.href = 'chart';
+					 //window.location.href = 'chart';
         },
         getDropdownValues(keyword) {
           console.log('You could refresh options by querying the API with '+keyword);
-        }
+        },
+				 visit() { 
+					 console.log('visit has been triggered'); 
+					  window.location.href = 'chart'; } }
       }
     });
 </script>
