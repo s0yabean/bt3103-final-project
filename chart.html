@@ -108,12 +108,7 @@
             <!-- Expected Grade -->
             <div v-if="charts.expected_grade" class="card">
                 <p>Expected Grade vs Actual Grade</p>
-                <ve-histogram :data="charts.expected_grade" 
-                              :settings="{
-                                        itemStyle: {
-                                            'color':'#004EA5'
-                                        },
-                                    }">
+                <ve-histogram :data="charts.expected_grade">
                 </ve-histogram>
             </div>
         </div>
