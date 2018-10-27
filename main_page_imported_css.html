@@ -3,8 +3,8 @@
 
 <head>
 
-	<link href="http://fonts.googleapis.com/css?family=Corben:" rel="stylesheet" type="text/css">
-	<link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Corben:" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
 
 	<script type="text/javascript" src="https://unpkg.com/vue-simple-search-dropdown@latest/dist/vue-simple-search-dropdown.min.js">
 
@@ -43,9 +43,9 @@
 					<h1>Find everything you need to know about NUS Modules!</h1>
 					<p>Search For Your Review: </p>
 					<div id="app" class="centering">
-						<Dropdown :options="options" v-on:selected="validateSelection" 
-						v-on:filter="getDropdownValues" :disabled="false" 
-						placeholder="Please select a module" @click="visit()">
+						<Dropdown @click="visit()" :options="options" v-on:selected="validateSelection" 
+						v-on:filter="getDropdownValues" :disabled="false" @click="visit"
+						placeholder="Please select a module">
 						</Dropdown>
 					</div>
 					<p>Selected module: {{ selected.name || 'none' }}</p>
