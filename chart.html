@@ -112,6 +112,16 @@
                 </ve-histogram>
             </div>
         </div>
+	<h1>Other Reviews</h1>
+        <div class="grid-container">
+            <div class="module_overview">
+                <ul>
+                  <li v-for="review in charts.informal_reviews">
+                      <p>{{ review }}</p>
+                  </li>
+                </ul>
+            </div>
+        </div>
 	</div>
 
 	<script src="https://unpkg.com/vue">
