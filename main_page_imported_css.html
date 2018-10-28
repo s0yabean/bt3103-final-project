@@ -50,6 +50,9 @@
 					</div>
 					<p>Selected module: {{ selected.name || 'none' }}</p>
 					<p>{{selected.id || 'none'}}</p>
+					<div id="diff_spd">
+						<button v-on:click="visit()">Visit Dashboard</button> 
+										</div>
 					<p>We can pull the above data from {{selected.name}} to populate the dashboards.
 					</p>
 				</div>
