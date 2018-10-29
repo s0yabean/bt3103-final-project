@@ -33,20 +33,20 @@
 		<p>Search For Your Review: </p>
 	</div>
 
-	<div id="dropdown" class="centering">
+	<div id="dropdown">
 		<Dropdown :options="options" v-on:selected="validateSelection" v-on:filter="getDropdownValues" :disabled="false" placeholder="Please select a module">
-
 		</Dropdown>
-		<p>Selected module: {{ selected.name || 'none' }}</p>
+		<p style="text-align:center">Selected module: {{ selected.name || 'none' }}</p>
 	</div>
-
-
 
 </div>
 
 <!--End of DROPDOWN COMPONENT-->
 	<div id="app">	
-   		<button><router-link to="dashboard">See Dashboard</router-link></button>
+
+		<div  style="text-align:center">
+		   <button><router-link to="dashboard"><h2 style="text-align:center">Launch Dashboard</h2></router-link></button>
+		</div>
  <!---     Current Route Checker: <b>{{currentRoute}}</b> 
 	   <p><router-link to="dashboard">See Dashboard</router-link></p>
 	   <p><router-link to="/">Go Back To Original</router-link></p>
@@ -130,6 +130,20 @@
 				</div>
 			</div>
 
+				<h1>Other Reviews</h1>
+        <div class="grid-container">
+            <div class="module_overview">
+                <ul>
+                  <li v-for="review in charts.informal_reviews">
+                      <p>{{ review }}</p>
+                  </li>
+                </ul>
+			</div>
+		</div>
+		
+
+			
+
 <!--END OF CHART COMPONENT-->	
 
 		</div> <!--MATCHED TO DASHBOARD ROUTE CLOSING POINT-->
@@ -151,7 +165,9 @@
 	<script src="https://unpkg.com/vue-chartkick@0.4.0"></script>
 	<script src="https://gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 	<script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
-	<script type="text/javascript" src="https://unpkg.com/vue-simple-search-dropdown@latest/dist/vue-simple-search-dropdown.min.js"></script>
+	<!--<script type="text/javascript" src="https://unpkg.com/vue-simple-search-dropdown@latest/dist/vue-simple-search-dropdown.min.js"></script>-->
+	<script type="text/javascript" src="./vue-simple-search-dropdown.min.js"></script>
+	<!--<script type="text/javascript" src="https://unpkg.com/vue-simple-search-dropdown@latest/dist/vue-simple-search-dropdown.min.js"></script>-->
 	<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js"></script>
 	<script src="https://unpkg.com/echarts-wordcloud@1.1.3/dist/echarts-wordcloud.js"></script>
@@ -161,15 +177,12 @@
   
 <script>
 const dash = { template: '<div>TEMP</div>' }
-
 const routes = [
   { path: '/dashboard', component: dash }
   ,{ path: '/', component: dash }]
-
 const router = new VueRouter({
   routes // short for `routes: routes`
 })
-
 Vue.use(Dropdown);
 var dropdown = new Vue({
 el: '#dropdown',
@@ -201,10 +214,8 @@ data : {
 			}
 		  }
 		});
-
 var db = firebase.initializeApp({ databaseURL: 'https://bt3103-review-for-review.firebaseio.com/' }).database()
 var chartsRef = db.ref('BT3103')	
-
 var app = new Vue({
         el: '#app',
         router,
@@ -222,7 +233,6 @@ var app = new Vue({
 		  get_url_diff_spd = 'https://bt3103-final-project.herokuapp.com/' + this.chosen_mod + '/diff_spd';
 		  patch_url_diff_spd = 'https://bt3103-review-for-review.firebaseio.com/BT3103/difficulty_level/rows/0.json';
 		  this.update_diff_spd(get_url_diff_spd, patch_url_diff_spd);
-
 		  get_url_snt_spd = 'https://bt3103-final-project.herokuapp.com/' + this.chosen_mod + '/snt_spd';
 		  patch_url_snt_spd = 'https://bt3103-review-for-review.firebaseio.com/BT3103/sentiment/rows/0.json';
 		  this.update_snt_spd(get_url_snt_spd, patch_url_snt_spd);
@@ -236,7 +246,6 @@ var app = new Vue({
 		  patch_url_update_snt_bar_all = 'https://bt3103-review-for-review.firebaseio.com/BT3103/expected_grade/rows/';
 		  this.update_snt_bar_all(get_url_update_snt_bar_all_exp, patch_url_update_snt_bar_all);
 		  this.update_snt_bar_all(get_url_update_snt_bar_all_act, patch_url_update_snt_bar_all);
-
 		},
       }, 
 		firebase: {
@@ -294,7 +303,6 @@ var app = new Vue({
 				}) 
 				, error =>{ console.log(error);} 
 				},
-
 			update_exp_bar_all(get_url, patch_url){ 
 								 for (var i = 0; i <=4 ; i++){ 
 									new_get_url=get_url + (i + 1) ;
@@ -320,7 +328,6 @@ var app = new Vue({
 									console.log('SendingData: ' + data); 
 									this.$http.patch(patch_url, data); }) , 
 									error=>{ console.log(error);} }
-
 				
 		}		
 	  })
@@ -329,5 +336,3 @@ var app = new Vue({
 	
 </body>
 </html>
-
-
