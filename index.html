@@ -26,22 +26,25 @@
 	</div>
 
 <!--START DROPDOWN COMPONENT-->
-	<div id="dropdown">
+<div id="dropdown">
 
+	<div class="dropdown_header" class='centering'>
 		<h1>Find everything you need to know about NUS Modules!</h1>
 		<p>Search For Your Review: </p>
+	</div>
 
-		<div id="dropdown" class="centering">
-		<Dropdown :options="options" v-on:selected="validateSelection" v-on:filter="getDropdownValues" 
-		:disabled="false" placeholder="Please select a module">
+	<div id="dropdown" class="centering">
+		<Dropdown :options="options" v-on:selected="validateSelection" v-on:filter="getDropdownValues" :disabled="false" placeholder="Please select a module">
+
 		</Dropdown>
-		</div>
-
 		<p>Selected module: {{ selected.name || 'none' }}</p>
 	</div>
-<!--END DROPDOWN COMPONENT-->		
 
 
+
+</div>
+
+<!--End of DROPDOWN COMPONENT-->
 	<div id="app">	
    		<button><router-link to="dashboard">See Dashboard</router-link></button>
  <!---     Current Route Checker: <b>{{currentRoute}}</b> 

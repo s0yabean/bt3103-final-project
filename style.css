@@ -9,8 +9,8 @@
 
 body {
   font-family: 'Corben', Georgia, Times, serif;
-  padding: 10px;
-  background: #f1f1f1;
+  padding: 20px;
+  background: #f3f2f3;
 }
 
 
@@ -19,7 +19,8 @@ body {
 .header {
   padding: 30px;
   text-align: center;
-  background: url(/img/sprinkles/sprinkles.png) repeat 0 0;
+  background: orange
+      /*url(/img/sprinkles/sprinkles.png) repeat 0 0;*/
 }
 
 .header h1 {
@@ -78,12 +79,40 @@ body {
 
 .centering {
   margin: 0 auto;
-  width: 50%;
-  height: 50%;
+  width: 60%;
+  height: 60%;
+  text-align: center;
 }
 
 /* Add a card effect for articles */
 
+.dropdown{
+   /* background-color: #F5A540;*/
+    padding: 20px;
+    margin-top: 20px;
+    width: 500px;
+   /* margin: auto;*/
+    border: 5px solid #87CEEB;
+
+    
+}
+
+.dropdown_header{
+  padding: 30px;
+  width: 700px;
+  height: 200px;
+  text-align: center;
+  margin: auto;
+  background: #f1f1f1;
+  text-align: center;
+    
+}
+
+.dropdown_select{
+    padding: 0px;
+  text-align: center;
+  background: #f1f1f1
+}
 .main_content {
 			background-color: #F5A540;
 			padding: 20px;
@@ -95,7 +124,8 @@ body {
   display: grid;
   grid-template-columns: auto auto auto auto auto;
   grid-gap: 10px;
-  background: url(/img/halftone-yellow/halftone-yellow.png) repeat 0 0;
+  background: orange;
+      /*url(/img/halftone-yellow/halftone-yellow.png) repeat 0 0;*/
   padding: 10px;
   margin-top: 10px;
   text-align: center;
